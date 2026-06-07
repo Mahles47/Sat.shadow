@@ -512,13 +512,14 @@
             alert("تم مسح البيانات المحفوظة.. هيتم عمل ريفريش للبدء من جديد 🔄");
             window.location.reload();
         }
-    </script>
-    
-    <!-- كود الـ Service Worker لزوم الـ PWA الفخم عشان يشتغل أوفلاين بدون نت فوق السطح -->
-    <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(() => {});
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Service Worker Registered!', reg))
+        .catch(err => console.log('Service Worker Install Error', err));
+    });
         }
+        
     </script>
 </body>
 </html>
